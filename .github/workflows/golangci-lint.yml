@@ -6,5 +6,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Install generators
+        run: |
+          sudo apt-get update
+          sudo apt-get install ragel
+          make setup
+      - name: Generated files match sources
+        # This step is in this action since it doesn't run on Windows, and so I
+        # don't need a distinct badge to display its status
+        run: |
+          make generate
+          git diff --exit-code
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v2
