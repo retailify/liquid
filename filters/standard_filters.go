@@ -120,6 +120,15 @@ func AddStandardFilters(fd FilterDictionary) { // nolint: gocyclo
 		}
 		return strings.ToUpper(s[:1]) + s[1:]
 	})
+	fd.AddFilter("camelcase", func(s, suffix string) string {
+		var g []string
+		replacer := strings.NewReplacer(",", " ", "_", " ", "-", " ")
+		p := strings.Fields(replacer.Replace(s))
+		for _, value := range p {
+			g = append(g, strings.Title(value))
+		}
+		return strings.Join(g, "")
+	})
 	fd.AddFilter("downcase", func(s, suffix string) string {
 		return strings.ToLower(s)
 	})

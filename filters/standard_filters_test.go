@@ -95,6 +95,10 @@ var filterTests = []struct {
 	{`"apples, oranges, and bananas" | prepend: "Some fruit: "`, "Some fruit: apples, oranges, and bananas"},
 	{`"I strained to see the train through the rain" | remove: "rain"`, "I sted to see the t through the "},
 	{`"I strained to see the train through the rain" | remove_first: "rain"`, "I sted to see the train through the rain"},
+	{`"Parker Moore" | camelcase`, "ParkerMoore"},
+	{`"parker moore" | camelcase`, "ParkerMoore"},
+	{`"Parker_Moore" | camelcase`, "ParkerMoore"},
+	{`"Parker_Moore-is, a Nice guy" | camelcase`, "ParkerMooreIsANiceGuy"},
 
 	{`"Liquid" | slice: 0`, "L"},
 	{`"Liquid" | slice: 2`, "q"},
