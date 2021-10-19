@@ -99,6 +99,7 @@ var filterTests = []struct {
 	{`"parker moore" | camelcase`, "ParkerMoore"},
 	{`"Parker_Moore" | camelcase`, "ParkerMoore"},
 	{`"Parker_Moore-is, a Nice guy" | camelcase`, "ParkerMooreIsANiceGuy"},
+	{`"Parker_Moore-is, a Nice guy" | camelcase | firstlower`, "parkerMooreIsANiceGuy"},
 
 	{`"Liquid" | slice: 0`, "L"},
 	{`"Liquid" | slice: 2`, "q"},

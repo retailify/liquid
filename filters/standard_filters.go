@@ -136,6 +136,10 @@ func AddStandardFilters(fd FilterDictionary) { // nolint: gocyclo
 	fd.AddFilter("escape_once", func(s, suffix string) string {
 		return html.EscapeString(html.UnescapeString(s))
 	})
+	// this filter is not a shopify standard filter, but I need it
+	fd.AddFilter("firstlower", func(s, suffix string) string {
+		return strings.ToLower(string(s[0])) + s[1:]
+	})
 	fd.AddFilter("newline_to_br", func(s string) string {
 		return strings.Replace(s, "\n", "<br />", -1)
 	})
